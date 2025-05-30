@@ -17,6 +17,9 @@ limitations under the License.
 package v1alpha1
 
 import (
+	"strconv"
+
+	"github.com/segmentio/fasthash/fnv1a"
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
@@ -72,6 +75,13 @@ type ClusterReport struct {
 	// ReportResult provides result details
 	// +optional
 	Results []ReportResult `json:"results,omitempty"`
+}
+
+func (r *ClusterReport) GetID() string {
+	h1 := fnv1a.Init64
+	h1 = fnv1a.AddString64(h1, r.GetName())
+
+	return strconv.FormatUint(h1, 10)
 }
 
 // ClusterReportList contains a list of ClusterReport
