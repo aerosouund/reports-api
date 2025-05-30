@@ -7,6 +7,24 @@ import (
 	corev1 "k8s.io/api/core/v1"
 )
 
+// Status specifies state of a policy result
+const (
+	StatusPass  = "pass"
+	StatusFail  = "fail"
+	StatusWarn  = "warn"
+	StatusError = "error"
+	StatusSkip  = "skip"
+)
+
+// Severity specifies priority of a policy result
+const (
+	SeverityCritical = "critical"
+	SeverityHigh     = "high"
+	SeverityMedium   = "medium"
+	SeverityLow      = "low"
+	SeverityInfo     = "info"
+)
+
 func (r *ReportResult) GetResource() *corev1.ObjectReference {
 	if len(r.Subjects) == 0 {
 		return nil
