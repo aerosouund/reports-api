@@ -1,4 +1,4 @@
-module openreports.io
+module github.com/aerosouund/reports-api
 
 go 1.24.1
 
