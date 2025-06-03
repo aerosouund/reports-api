@@ -116,7 +116,7 @@ type ReportInterface interface {
 	GetScope() *corev1.ObjectReference
 	GetResults() []ReportResult
 	HasResult(id string) bool
-	GetSummary() []ReportSummary
+	GetSummary() ReportSummary
 	GetSource() string
 	GetKinds() []string
 	GetSeverities() []string
