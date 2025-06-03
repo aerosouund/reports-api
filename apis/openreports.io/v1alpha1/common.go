@@ -26,6 +26,35 @@ const (
 	SeverityInfo     = "info"
 )
 
+// +kubebuilder:validation:Enum=pass;fail;warn;error;skip
+
+// PolicyResult has one of the following values:
+//   - pass: indicates that the policy requirements are met
+//   - fail: indicates that the policy requirements are not met
+//   - warn: indicates that the policy requirements and not met, and the policy is not scored
+//   - error: indicates that the policy could not be evaluated
+//   - skip: indicates that the policy was not selected based on user inputs or applicability
+type PolicyResult string
+
+// +kubebuilder:validation:Enum=critical;high;low;medium;info
+
+// PolicySeverity has one of the following values:
+// - critical
+// - high
+// - low
+// - medium
+// - info
+type Severity string
+
+var SeverityLevel = map[ResultSeverity]int{
+	"":               -1,
+	SeverityInfo:     0,
+	SeverityLow:      1,
+	SeverityMedium:   2,
+	SeverityHigh:     3,
+	SeverityCritical: 4,
+}
+
 func (r *ReportResult) GetResource() *corev1.ObjectReference {
 	if len(r.Subjects) == 0 {
 		return nil
