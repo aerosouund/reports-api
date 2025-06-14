@@ -272,6 +272,10 @@ func (r *Report) GetScope() *corev1.ObjectReference {
 	return r.Scope
 }
 
+func (r *Report) SetSummary(s ReportSummary) {
+	r.Summary = s
+}
+
 // ReportList contains a list of Report
 // +kubebuilder:object:root=true
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
