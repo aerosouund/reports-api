@@ -161,6 +161,10 @@ func (r *ClusterReport) GetScope() *corev1.ObjectReference {
 	return r.Scope
 }
 
+func (r *ClusterReport) SetSummary(s ReportSummary) {
+	r.Summary = s
+}
+
 // ClusterReportList contains a list of ClusterReport
 // +kubebuilder:object:root=true
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
